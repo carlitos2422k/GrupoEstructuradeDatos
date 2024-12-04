@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Carlos/Desktop/GrupoEstructuradeDatos",
-      "program": "c:/Users/Carlos/Desktop/GrupoEstructuradeDatos/build/Debug/outDebug",
+      "cwd": "c:/Users/Carlos/Desktop/borrador 1/GrupoEstructuradeDatos",
+      "program": "c:/Users/Carlos/Desktop/borrador 1/GrupoEstructuradeDatos/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

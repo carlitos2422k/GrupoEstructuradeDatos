@@ -1,15 +1,15 @@
 #include "Nodo.h"
 
 template<typename T>
-Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, T _celular ,int _idEspacio, T _placa, T _marca, T _color) {
+Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, T _celular, int _idEspacio, T _placa, T _marca, T _color) {
     nombre = _nombre;
     apellido = _apellido;
-    cedula = _cedula
-    celular = _celular
+    cedula = _cedula;
+    celular = _celular;
     idEspacio = _idEspacio;
     placa = _placa;
     marca = _marca;
-    color= _color
+    color = _color;
     siguiente = nullptr;
     anterior = nullptr;
 }
@@ -54,7 +54,6 @@ T Nodo<T>::getCelular() {
     return celular;
 }
 
-
 template<typename T>
 void Nodo<T>::setIdEspacio(int _idEspacio) {
     idEspacio = _idEspacio;
@@ -94,7 +93,6 @@ template<typename T>
 T Nodo<T>::getColor() {
     return color;
 }
-
 
 template<typename T>
 void Nodo<T>::setSiguiente(Nodo* _siguiente) {

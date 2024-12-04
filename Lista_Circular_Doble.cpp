@@ -1,16 +1,12 @@
 #include "Lista_Circular_Doble.h"
-#include <iostream>
-using namespace std;
 
 template<typename T>
-Lista_Circular_Doble<T>::Lista_Circular_Doble() {
-    cabeza = nullptr;
-}
+Lista_Circular_Doble<T>::Lista_Circular_Doble() : cabeza(nullptr) {}
 
 template<typename T>
-void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido,T cedula, T celular, int idEspacio, T placa, T marca, T color) {
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
-    if (cabeza == nullptr) {
+void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color) {
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, cedula, celular, idEspacio, placa, marca, color);
+    if (!cabeza) {
         cabeza = nuevo;
         cabeza->setSiguiente(cabeza);
         cabeza->setAnterior(cabeza);
@@ -25,9 +21,9 @@ void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido,T cedula, T
 }
 
 template<typename T>
-void Lista_Circular_Doble<T>::InsertarPorCola(T nombre, T apellido,T cedula, T celular, int idEspacio, T placa, T marca, T color) {
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
-    if (cabeza == nullptr) {
+void Lista_Circular_Doble<T>::InsertarPorCola(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color) {
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, cedula, celular, idEspacio, placa, marca, color);
+    if (!cabeza) {
         cabeza = nuevo;
         cabeza->setSiguiente(cabeza);
         cabeza->setAnterior(cabeza);
@@ -38,58 +34,91 @@ void Lista_Circular_Doble<T>::InsertarPorCola(T nombre, T apellido,T cedula, T c
         ultimo->setSiguiente(nuevo);
         cabeza->setAnterior(nuevo);
     }
+}
+
+template<typename T>
+void Lista_Circular_Doble<T>::InsertarEnPosicion(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color, int posicion) {
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, cedula, celular, idEspacio, placa, marca, color);
+    if (!cabeza) {
+        InsertarPorCabeza(nombre, apellido, cedula, celular, idEspacio, placa, marca, color);
+        return;
+    }
+
+    Nodo<T>* aux = cabeza;
+    int contador = 0;
+
+    do {
+        if (contador == posicion) {
+            Nodo<T>* anterior = aux->getAnterior();
+            nuevo->setSiguiente(aux);
+            nuevo->setAnterior(anterior);
+            anterior->setSiguiente(nuevo);
+            aux->setAnterior(nuevo);
+
+            if (posicion == 0) {
+                cabeza = nuevo;
+            }
+            std::cout << "Nodo insertado en la posición " << posicion << "." << std::endl;
+            return;
+        }
+        aux = aux->getSiguiente();
+        contador++;
+    } while (aux != cabeza);
+
+    std::cout << "Error: Posición fuera de los límites." << std::endl;
+    delete nuevo;
 }
 
 template<typename T>
 void Lista_Circular_Doble<T>::Mostrar() {
-    if (cabeza == nullptr) {
-        cout << "La lista está vacía." << endl;
+    if (!cabeza) {
+        std::cout << "La lista está vacía." << std::endl;
         return;
     }
+
     Nodo<T>* aux = cabeza;
     do {
-        cout << "Nombre: " << aux->getNombre()
-             << ", Apellido: " << aux->getApellido()
-             << ", ID Espacio: " << aux->getIdEspacio()
-             << ", Placa: " << aux->getPlaca()
-             << ", Marca: " << aux->getMarca() << endl;
+        std::cout << "Nombre: " << aux->getNombre()
+                  << ", Apellido: " << aux->getApellido()
+                  << ", ID Espacio: " << aux->getIdEspacio()
+                  << ", Placa: " << aux->getPlaca()
+                  << ", Marca: " << aux->getMarca() << std::endl;
         aux = aux->getSiguiente();
     } while (aux != cabeza);
 }
 
 template<typename T>
 void Lista_Circular_Doble<T>::BuscarPorPlaca(T placa) {
-    if (cabeza == nullptr) {
-        cout << "La lista está vacía." << endl;
+    if (!cabeza) {
+        std::cout << "La lista está vacía." << std::endl;
         return;
     }
+
     Nodo<T>* aux = cabeza;
     do {
         if (aux->getPlaca() == placa) {
-            cout << "Registro encontrado: " << endl
-                 << "Nombre: " << aux->getNombre()
-                 << ", Apellido: " << aux->getApellido()
-                 << ", ID Espacio: " << aux->getIdEspacio()
-                 << ", Placa: " << aux->getPlaca()
-                 << ", Marca: " << aux->getMarca() << endl;
+            std::cout << "Registro encontrado: " << aux->getPlaca() << std::endl;
             return;
         }
         aux = aux->getSiguiente();
     } while (aux != cabeza);
-    cout << "Placa " << placa << " no encontrada." << endl;
+
+    std::cout << "Placa no encontrada." << std::endl;
 }
 
 template<typename T>
 void Lista_Circular_Doble<T>::EliminarPorPlaca(T placa) {
-    if (cabeza == nullptr) {
-        cout << "La lista está vacía." << endl;
+    if (!cabeza) {
+        std::cout << "La lista está vacía." << std::endl;
         return;
     }
+
     Nodo<T>* aux = cabeza;
     do {
         if (aux->getPlaca() == placa) {
             Nodo<T>* anterior = aux->getAnterior();
             Nodo<T>* siguiente = aux->getSiguiente();
+
             anterior->setSiguiente(siguiente);
             siguiente->setAnterior(anterior);
 
@@ -97,57 +126,11 @@ void Lista_Circular_Doble<T>::EliminarPorPlaca(T placa) {
                 cabeza = (aux == siguiente) ? nullptr : siguiente;
             }
             delete aux;
-            cout << "Nodo con placa " << placa << " eliminado correctamente." << endl;
-            return;
-        }
-        aux = aux->getSiguiente();
-    } while (aux != cabeza);
-    cout << "Placa " << placa << " no encontrada." << endl;
-}
-template<typename T>
-void Lista_Circular_Doble<T>::InsertarEnPosicion(T nombre, T apellido,T cedula, T celular, int idEspacio, T placa, T marca, T color) {
-    if (cabeza == nullptr) {
-        cout << "La lista está vacía. Insertando en la posición 0." << endl;
-        InsertarPorCabeza(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
-        return;
-    }
-
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
-    Nodo<T>* aux = cabeza;
-
-    // Verificar si ya existe un nodo con el mismo idEspacio
-    do {
-        if (aux->getIdEspacio() == posicion) {
-            cout << "Error: El espacio con ID " << posicion << " ya está ocupado." << endl;
-            delete nuevo;
+            std::cout << "Nodo eliminado con placa: " << placa << "." << std::endl;
             return;
         }
         aux = aux->getSiguiente();
     } while (aux != cabeza);
 
-    aux = cabeza;
-    int contador = 0;
-
-    // Encontrar la posición deseada
-    do {
-        if (contador == posicion) {
-            Nodo<T>* anterior = aux->getAnterior();
-            anterior->setSiguiente(nuevo);
-            nuevo->setAnterior(anterior);
-            nuevo->setSiguiente(aux);
-            aux->setAnterior(nuevo);
-
-            // Si se inserta en la posición 0, se actualiza la cabeza
-            if (posicion == 0) {
-                cabeza = nuevo;
-            }
-            cout << "Nodo insertado en la posición " << posicion << "." << endl;
-            return;
-        }
-        aux = aux->getSiguiente();
-        contador++;
-    } while (aux != cabeza);
-
-    cout << "Error: La posición " << posicion << " es inválida o está fuera de los límites de la lista." << endl;
-    delete nuevo;
+    std::cout << "No se encontró un nodo con la placa " << placa << "." << std::endl;
 }
