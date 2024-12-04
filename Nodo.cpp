@@ -1,12 +1,15 @@
 #include "Nodo.h"
 
 template<typename T>
-Nodo<T>::Nodo(T _nombre, T _apellido, int _idEspacio, T _placa, T _marca) {
+Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, T _celular ,int _idEspacio, T _placa, T _marca, T _color) {
     nombre = _nombre;
     apellido = _apellido;
+    cedula = _cedula
+    celular = _celular
     idEspacio = _idEspacio;
     placa = _placa;
     marca = _marca;
+    color= _color
     siguiente = nullptr;
     anterior = nullptr;
 }
@@ -30,6 +33,27 @@ template<typename T>
 T Nodo<T>::getApellido() {
     return apellido;
 }
+
+template<typename T>
+void Nodo<T>::setCedula(T _cedula) {
+    cedula = _cedula;
+}
+
+template<typename T>
+T Nodo<T>::getCedula() {
+    return cedula;
+}
+
+template<typename T>
+void Nodo<T>::setCelular(T _celular) {
+    celular = _celular;
+}
+
+template<typename T>
+T Nodo<T>::getCelular() {
+    return celular;
+}
+
 
 template<typename T>
 void Nodo<T>::setIdEspacio(int _idEspacio) {
@@ -60,6 +84,17 @@ template<typename T>
 T Nodo<T>::getMarca() {
     return marca;
 }
+
+template<typename T>
+void Nodo<T>::setColor(T _color) {
+    color = _color;
+}
+
+template<typename T>
+T Nodo<T>::getColor() {
+    return color;
+}
+
 
 template<typename T>
 void Nodo<T>::setSiguiente(Nodo* _siguiente) {

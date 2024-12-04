@@ -8,8 +8,8 @@ Lista_Circular_Doble<T>::Lista_Circular_Doble() {
 }
 
 template<typename T>
-void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido, int idEspacio, T placa, T marca) {
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, idEspacio, placa, marca);
+void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido,T cedula, T celular, int idEspacio, T placa, T marca, T color) {
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
     if (cabeza == nullptr) {
         cabeza = nuevo;
         cabeza->setSiguiente(cabeza);
@@ -25,8 +25,8 @@ void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido, int idEspa
 }
 
 template<typename T>
-void Lista_Circular_Doble<T>::InsertarPorCola(T nombre, T apellido, int idEspacio, T placa, T marca) {
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, idEspacio, placa, marca);
+void Lista_Circular_Doble<T>::InsertarPorCola(T nombre, T apellido,T cedula, T celular, int idEspacio, T placa, T marca, T color) {
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
     if (cabeza == nullptr) {
         cabeza = nuevo;
         cabeza->setSiguiente(cabeza);
@@ -105,14 +105,14 @@ void Lista_Circular_Doble<T>::EliminarPorPlaca(T placa) {
     cout << "Placa " << placa << " no encontrada." << endl;
 }
 template<typename T>
-void Lista_Circular_Doble<T>::InsertarEnPosicion(T nombre, T apellido, int idEspacio, T placa, T marca, int posicion) {
+void Lista_Circular_Doble<T>::InsertarEnPosicion(T nombre, T apellido,T cedula, T celular, int idEspacio, T placa, T marca, T color) {
     if (cabeza == nullptr) {
         cout << "La lista está vacía. Insertando en la posición 0." << endl;
-        InsertarPorCabeza(nombre, apellido, idEspacio, placa, marca);
+        InsertarPorCabeza(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
         return;
     }
 
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, idEspacio, placa, marca);
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido,cedula, celular,  idEspacio, placa, marca, color);
     Nodo<T>* aux = cabeza;
 
     // Verificar si ya existe un nodo con el mismo idEspacio
