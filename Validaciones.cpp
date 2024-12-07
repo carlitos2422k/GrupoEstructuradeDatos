@@ -16,13 +16,16 @@
 
 using namespace std;
 
+template class Validaciones<string>;
+template class Validaciones<long>;
+
 template <typename T>
 Validaciones<T>::Validaciones()
 {
 }
 
 template <typename T>
-T Validaciones<T>::ingresar(char *msj, char *tipo)
+T Validaciones<T>::ingresar(const char *msj, const char *tipo)
 {
     char cad[100];
     char c;
