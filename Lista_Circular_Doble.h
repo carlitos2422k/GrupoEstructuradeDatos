@@ -17,6 +17,8 @@ public:
     void Mostrar();
     void BuscarPorPlaca(T placa);
     void EliminarPorPlaca(T placa);
+    void InicializarLista(int totalEspacios);
+    void ActualizarEspacio(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color);
 };
 
 #endif // LISTA_CIRCULAR_DOBLE_H

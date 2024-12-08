@@ -134,3 +134,36 @@ void Lista_Circular_Doble<T>::EliminarPorPlaca(T placa) {
 
     std::cout << "No se encontró un nodo con la placa " << placa << "." << std::endl;
 }
+template<typename T>
+void Lista_Circular_Doble<T>::InicializarLista(int totalEspacios) {
+    for (int i = 0; i < totalEspacios; i++) {
+        this->InsertarPorCola("", "", "", "", i, "", "", "");
+    }
+    std::cout << "Lista inicializada con " << totalEspacios << " espacios vacíos.\n";
+}
+
+template<typename T>
+void Lista_Circular_Doble<T>::ActualizarEspacio(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color) {
+    if (!cabeza) {
+        std::cout << "La lista está vacía.\n";
+        return;
+    }
+
+    Nodo<T>* aux = cabeza;
+    do {
+        if (aux->getIdEspacio() == idEspacio) {
+            aux->setNombre(nombre);
+            aux->setApellido(apellido);
+            aux->setCedula(cedula);
+            aux->setCelular(celular);
+            aux->setPlaca(placa);
+            aux->setMarca(marca);
+            aux->setColor(color);
+            std::cout << "Espacio actualizado exitosamente.\n";
+            return;
+        }
+        aux = aux->getSiguiente();
+    } while (aux != cabeza);
+
+    std::cout << "Error: Espacio no encontrado.\n";
+}

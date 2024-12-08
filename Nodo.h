@@ -2,43 +2,43 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 template<typename T>
 class Nodo {
 private:
-    T nombre;        // Nombre del dueño
-    T apellido;      // Apellido del dueño
-    T cedula;        // Cédula del dueño
-    T celular;       // Celular del dueño
-    int idEspacio;   // ID del espacio de parqueo
-    T placa;         // Placa del vehículo
-    T marca;         // Marca del vehículo
-    T color;         // Color del vehículo
+    T nombre;       // Nombre del dueño
+    T apellido;     // Apellido del dueño
+    T cedula;
+    T celular;
+    int idEspacio;  // ID del espacio de parqueo
+    T placa;        // Placa del vehículo
+    T marca;       // Marca del vehículo
+    T color;
     Nodo* siguiente; // Puntero al siguiente nodo
     Nodo* anterior;  // Puntero al nodo anterior
 
 public:
-    Nodo(T _nombre, T _apellido, T _cedula, T _celular, int _idEspacio, T _placa, T _marca, T _color);
-
-    void setNombre(T _nombre);
+    Nodo(T,T,T,T,int, T,T,T);
+    void setNombre(T);
     T getNombre();
-    void setApellido(T _apellido);
+    void setApellido(T);
     T getApellido();
-    void setCedula(T _cedula);
+    void setCedula(T);
     T getCedula();
-    void setCelular(T _celular);
+    void setCelular(T);
     T getCelular();
-    void setIdEspacio(int _idEspacio);
+    void setIdEspacio(int);
     int getIdEspacio();
-    void setPlaca(T _placa);
+    void setPlaca(T);
     T getPlaca();
-    void setMarca(T _marca);
+    void setMarca(T);
     T getMarca();
-    void setColor(T _color);
-    T getColor();
-
-    void setSiguiente(Nodo* _siguiente);
+    void setColor(T);
+    T getColor(); 
+    void setSiguiente(Nodo*);
     Nodo* getSiguiente();
-    void setAnterior(Nodo* _anterior);
+    void setAnterior(Nodo*);
     Nodo* getAnterior();
 
     template<typename U> friend class Lista_Circular_Doble;
