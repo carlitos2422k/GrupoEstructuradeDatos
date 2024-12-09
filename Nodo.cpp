@@ -1,7 +1,7 @@
 #include "Nodo.h"
 
 template<typename T>
-Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, T _celular, int _idEspacio, T _placa, T _marca, T _color) {
+Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, T _celular, int _idEspacio, T _placa, T _marca, T _color, std::string _fechaHora) {
     nombre = _nombre;
     apellido = _apellido;
     cedula = _cedula;
@@ -12,7 +12,19 @@ Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, T _celular, int _idEspacio, T _
     color = _color;
     siguiente = nullptr;
     anterior = nullptr;
+    fechaHora = _fechaHora; // Inicializa como cadena vacía
 }
+
+template<typename T>
+void Nodo<T>::setFechaHora(const std::string& _fechaHora) {
+    fechaHora = _fechaHora;
+}
+
+template<typename T>
+std::string Nodo<T>::getFechaHora() const {
+    return fechaHora;
+}
+
 
 template<typename T>
 void Nodo<T>::setNombre(T _nombre) {

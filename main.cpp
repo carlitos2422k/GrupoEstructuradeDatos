@@ -6,7 +6,8 @@
 #include <string>
 #include <conio.h> 
 #include <cstdlib>
-
+#include <chrono>
+#include <ctime>
 using namespace std;
 
 
@@ -21,7 +22,13 @@ void mostrarMenu(const string opciones[], int numOpciones, int seleccion) {
         }
     }
 }
-
+std::string getCurrentDateTime() {
+    auto now = std::chrono::system_clock::now();
+    auto now_time_t = std::chrono::system_clock::to_time_t(now);
+    std::string timeStr = std::ctime(&now_time_t);
+    timeStr.pop_back(); // Elimina el salto de línea
+    return timeStr;
+}
 int main() {
     int filas = 5, columnas = 5;
     Parqueadero* parqueadero = new Parqueadero(filas, columnas);
@@ -40,7 +47,7 @@ int main() {
     int numOpciones = 4;
     bool ejecutando = true;
 
-    string nombre, apellido, placa, marca, color, celular, cedulaStr;
+    string nombre, apellido, placa, marca, color, celular, cedulaStr, fechaHoraActual;
     long cedula;
     int idEspacio = 0;
 
@@ -82,8 +89,9 @@ int main() {
                 color=ingresar_string.ingresar("Ingrese el color del vehiculo: ","string");
                 cout << endl;
                 cedulaStr = to_string(cedula);
+                fechaHoraActual = getCurrentDateTime();
                 cout << endl;
-                lista_vehiculos->ActualizarEspacio(nombre, apellido, cedulaStr, celular, idEspacio, placa, marca, color);
+                lista_vehiculos->ActualizarEspacio(nombre, apellido, cedulaStr, celular, idEspacio, placa, marca, color, fechaHoraActual);
                 parqueadero->ocuparEspacio(idEspacio);
                 cout << "Vehículo ingresado correctamente en el espacio " << idEspacio << endl;
                 system("pause");

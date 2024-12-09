@@ -1,25 +1,25 @@
 #pragma once
-#include <iostream>
 #include <string>
-
-using namespace std;
 
 template<typename T>
 class Nodo {
 private:
-    T nombre;       // Nombre del dueño
-    T apellido;     // Apellido del dueño
+    T nombre;
+    T apellido;
     T cedula;
     T celular;
-    int idEspacio;  // ID del espacio de parqueo
-    T placa;        // Placa del vehículo
-    T marca;       // Marca del vehículo
+    int idEspacio;
+    T placa;
+    T marca;
     T color;
-    Nodo* siguiente; // Puntero al siguiente nodo
-    Nodo* anterior;  // Puntero al nodo anterior
+    std::string fechaHora; // Campo para la fecha y hora
+
+    Nodo* siguiente;
+    Nodo* anterior;
 
 public:
-    Nodo(T,T,T,T,int, T,T,T);
+    Nodo(T, T, T, T, int, T, T, T,std::string);
+
     void setNombre(T);
     T getNombre();
     void setApellido(T);
@@ -35,7 +35,12 @@ public:
     void setMarca(T);
     T getMarca();
     void setColor(T);
-    T getColor(); 
+    T getColor();
+
+    // Métodos para fecha y hora
+    void setFechaHora(const std::string&);
+    std::string getFechaHora() const;
+
     void setSiguiente(Nodo*);
     Nodo* getSiguiente();
     void setAnterior(Nodo*);
