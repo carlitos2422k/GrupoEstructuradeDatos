@@ -13,12 +13,13 @@ public:
     Lista_Circular_Doble();
     void InsertarPorCabeza(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color,const std::string& fechaHora);
     void InsertarPorCola(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color,const std::string& fechaHora);
-    void InsertarEnPosicion(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color, int posicion);
     void Mostrar();
     void BuscarPorPlaca(T placa);
     void EliminarPorPlaca(T placa);
     void InicializarLista(int totalEspacios);
-    void ActualizarEspacio(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color,const std::string& fechaHora);
+    void ActualizarEspacio(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color,const std::string& fechaHora); 
+    Nodo<T>* getCabeza(); 
+    friend class Utils;
 };
 
 #endif // LISTA_CIRCULAR_DOBLE_H

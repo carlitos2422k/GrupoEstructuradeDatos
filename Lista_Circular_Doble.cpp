@@ -136,3 +136,7 @@ void Lista_Circular_Doble<T>::ActualizarEspacio(T nombre, T apellido, T cedula, 
 
     std::cout << "Error: Espacio no encontrado.\n";
 }
+template<typename T>
+Nodo<T>* Lista_Circular_Doble<T>::getCabeza() {
+    return cabeza;
+}
