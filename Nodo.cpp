@@ -1,11 +1,10 @@
 #include "Nodo.h"
 
 template<typename T>
-Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, T _celular, int _idEspacio, T _placa, T _marca, T _color, std::string _fechaHora) {
+Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, int _idEspacio, T _placa, T _marca, T _color, std::string _fechaHora) {
     nombre = _nombre;
     apellido = _apellido;
     cedula = _cedula;
-    celular = _celular;
     idEspacio = _idEspacio;
     placa = _placa;
     marca = _marca;
@@ -54,16 +53,6 @@ void Nodo<T>::setCedula(T _cedula) {
 template<typename T>
 T Nodo<T>::getCedula() {
     return cedula;
-}
-
-template<typename T>
-void Nodo<T>::setCelular(T _celular) {
-    celular = _celular;
-}
-
-template<typename T>
-T Nodo<T>::getCelular() {
-    return celular;
 }
 
 template<typename T>

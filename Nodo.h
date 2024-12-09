@@ -7,7 +7,6 @@ private:
     T nombre;
     T apellido;
     T cedula;
-    T celular;
     int idEspacio;
     T placa;
     T marca;
@@ -18,7 +17,7 @@ private:
     Nodo* anterior;
 
 public:
-    Nodo(T, T, T, T, int, T, T, T,std::string);
+    Nodo(T, T, T, int, T, T, T,std::string);
 
     void setNombre(T);
     T getNombre();
@@ -26,8 +25,6 @@ public:
     T getApellido();
     void setCedula(T);
     T getCedula();
-    void setCelular(T);
-    T getCelular();
     void setIdEspacio(int);
     int getIdEspacio();
     void setPlaca(T);

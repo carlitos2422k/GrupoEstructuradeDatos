@@ -4,8 +4,8 @@ template<typename T>
 Lista_Circular_Doble<T>::Lista_Circular_Doble() : cabeza(nullptr) {}
 
 template<typename T>
-void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color, const std::string& fechaHora) {
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, cedula, celular, idEspacio, placa, marca, color,fechaHora);
+void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido, T cedula, int idEspacio, T placa, T marca, T color, const std::string& fechaHora) {
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, cedula, idEspacio, placa, marca, color,fechaHora);
     if (!cabeza) {
         cabeza = nuevo;
         cabeza->setSiguiente(cabeza);
@@ -21,8 +21,8 @@ void Lista_Circular_Doble<T>::InsertarPorCabeza(T nombre, T apellido, T cedula, 
 }
 
 template<typename T>
-void Lista_Circular_Doble<T>::InsertarPorCola(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color, const std::string& fechaHora) {
-    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, cedula, celular, idEspacio, placa, marca, color,fechaHora);
+void Lista_Circular_Doble<T>::InsertarPorCola(T nombre, T apellido, T cedula, int idEspacio, T placa, T marca, T color, const std::string& fechaHora) {
+    Nodo<T>* nuevo = new Nodo<T>(nombre, apellido, cedula, idEspacio, placa, marca, color,fechaHora);
     if (!cabeza) {
         cabeza = nuevo;
         cabeza->setSiguiente(cabeza);
@@ -84,17 +84,16 @@ void Lista_Circular_Doble<T>::EliminarPorPlaca(T placa) {
     Nodo<T>* aux = cabeza;
     do {
         if (aux->getPlaca() == placa) {
-            Nodo<T>* anterior = aux->getAnterior();
-            Nodo<T>* siguiente = aux->getSiguiente();
+            // Vaciar los datos del nodo (excepto el ID de espacio)
+            aux->setNombre("");
+            aux->setApellido("");
+            aux->setCedula("");
+            aux->setPlaca("");
+            aux->setMarca("");
+            aux->setColor("");
+            aux->setFechaHora("");
 
-            anterior->setSiguiente(siguiente);
-            siguiente->setAnterior(anterior);
-
-            if (aux == cabeza) {
-                cabeza = (aux == siguiente) ? nullptr : siguiente;
-            }
-            delete aux;
-            std::cout << "Nodo eliminado con placa: " << placa << "." << std::endl;
+            std::cout << "Datos del vehiculo con placa " << placa << " han sido vaciados." << std::endl;
             return;
         }
         aux = aux->getSiguiente();
@@ -102,16 +101,17 @@ void Lista_Circular_Doble<T>::EliminarPorPlaca(T placa) {
 
     std::cout << "No se encontró un nodo con la placa " << placa << "." << std::endl;
 }
+
 template<typename T>
 void Lista_Circular_Doble<T>::InicializarLista(int totalEspacios) {
     for (int i = 0; i < totalEspacios; i++) {
-        this->InsertarPorCola("", "", "", "", i, "", "", "","");
+        this->InsertarPorCola("", "", "", i, "", "", "","");
     }
     std::cout << "Lista inicializada con " << totalEspacios << " espacios vacíos.\n";
 }
 
 template<typename T>
-void Lista_Circular_Doble<T>::ActualizarEspacio(T nombre, T apellido, T cedula, T celular, int idEspacio, T placa, T marca, T color, const std::string& fechaHora) {
+void Lista_Circular_Doble<T>::ActualizarEspacio(T nombre, T apellido, T cedula, int idEspacio, T placa, T marca, T color, const std::string& fechaHora) {
     if (!cabeza) {
         std::cout << "La lista está vacía.\n";
         return;
@@ -123,7 +123,6 @@ void Lista_Circular_Doble<T>::ActualizarEspacio(T nombre, T apellido, T cedula, 
             aux->setNombre(nombre);
             aux->setApellido(apellido);
             aux->setCedula(cedula);
-            aux->setCelular(celular);
             aux->setPlaca(placa);
             aux->setMarca(marca);
             aux->setColor(color);

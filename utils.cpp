@@ -75,14 +75,18 @@ void Utils::modifyCharInString(std::string& str, char target, int offset) {
     }
 }
 bool Utils::validarPlacaEcuador(const std::string& placa) {
-    std::regex regexParticular("^[A-Z]{3}-[0-9]{4}$");
-    std::regex regexMoto("^[A-Z]{3}-[0-9]{3}$");
+    // Excluimos D, F, H y V solo en la primera letra.
+    std::regex regexParticular("^[A-CEG-IK-UX-Z][A-Z]{2}-[0-9]{4}$");
+    std::regex regexMoto("^[A-CEG-IK-UX-Z][A-Z]{2}-[0-9]{3}$");
 
+    // Validamos la placa contra las expresiones regulares.
     if (std::regex_match(placa, regexParticular) || std::regex_match(placa, regexMoto)) {
         return true;
     }
     return false;
 }
+
+
 void Utils::mostrarMenu(const std::string opciones[], int numOpciones, int seleccion) {
     system("cls");
     std::cout << "\033[35m*********** Sistema de Parqueadero ***********\033[0m\n";
@@ -112,7 +116,6 @@ bool Utils::isUniqueField(Lista_Circular_Doble<std::string>* lista, const std::s
     do {
         if ((tipo == "cedula" && actual->getCedula() == campo) ||
             (tipo == "placa" && actual->getPlaca() == campo) ||
-            (tipo == "celular" && actual->getCelular() == campo)||
             (tipo== "id" && actual->getIdEspacio() == id)) {
             return false;
         }
@@ -129,8 +132,7 @@ bool Utils::isSpaceOccupied(Lista_Circular_Doble<std::string>* lista, int idEspa
         if (actual->getIdEspacio() == idEspacio) {
             // Verificar si todos los campos están llenos.
             if (actual->getCedula() != "" &&
-                actual->getPlaca() != "" &&
-                actual->getCelular() != "") {
+                actual->getPlaca() != "") {
                 return false; // El espacio está ocupado.
             } else {
                 return true; // El espacio está disponible.
