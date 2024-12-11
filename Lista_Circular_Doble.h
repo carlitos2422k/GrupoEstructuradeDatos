@@ -18,6 +18,9 @@ public:
     void EliminarPorPlaca(T placa);
     void InicializarLista(int totalEspacios);
     void ActualizarEspacio(T nombre, T apellido, T cedula, int idEspacio, T placa, T marca, T color,const std::string& fechaHora); 
+    void cifrarCampoDeNodo(int idNodo, const std::string& campo, int desplazamiento);
+    void cifrarCampoEnTodos(int idNodo, int desplazamiento);
+    std::string cifrarString(const std::string& texto, int desplazamiento);
     Nodo<T>* getCabeza(); 
     friend class Utils;
 };

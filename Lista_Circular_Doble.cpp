@@ -1,5 +1,5 @@
 #include "Lista_Circular_Doble.h"
-
+#include <algorithm>
 template<typename T>
 Lista_Circular_Doble<T>::Lista_Circular_Doble() : cabeza(nullptr) {}
 
@@ -138,4 +138,93 @@ void Lista_Circular_Doble<T>::ActualizarEspacio(T nombre, T apellido, T cedula, 
 template<typename T>
 Nodo<T>* Lista_Circular_Doble<T>::getCabeza() {
     return cabeza;
+}
+
+template <typename T>
+std::string Lista_Circular_Doble<T>::cifrarString(const std::string& texto, int desplazamiento) {
+    std::string resultado = texto;
+
+    for (char& c : resultado) {
+        c += desplazamiento; // Desplazar el caracter por el valor de clave
+    }
+
+    return resultado;
+}
+
+template <typename T>
+void Lista_Circular_Doble<T>::cifrarCampoDeNodo(int idNodo, const std::string& campo, int desplazamiento) {
+    if (!cabeza) {
+        std::cout << "La lista está vacía.\n";
+        return;
+    }
+
+    Nodo<T>* aux = cabeza;
+    do {
+        if (aux->getIdEspacio() == idNodo) {
+            if (campo == "nombre") {
+                std::string nombre= aux->getNombre();
+                aux->setNombre(cifrarString(nombre, desplazamiento));
+            } else if (campo == "apellido") {
+                std::string apellido = aux->getApellido();
+                aux->setApellido(cifrarString(apellido, desplazamiento));
+            } else if (campo == "cedula") {
+                std::string cedula=aux->getCedula();
+                aux->setCedula(cifrarString(cedula, desplazamiento));
+            } else if (campo == "placa") {
+                std::string placa = aux->getPlaca();
+                aux->setPlaca(cifrarString(placa, desplazamiento));
+            } else if (campo == "marca") {
+                std::string marca=aux->getMarca();
+                aux->setMarca(cifrarString(marca, desplazamiento));
+            } else if (campo == "color") {
+                std::string color=aux->getColor();
+                aux->setColor(cifrarString(color, desplazamiento));
+            } else if (campo == "fecha") {
+                std::string fecha=aux->getFechaHora();
+                aux->setFechaHora(cifrarString(fecha, desplazamiento));
+            } else {
+                std::cout << "Campo desconocido: " << campo << ".\n";
+                return;
+            }
+            std::cout << "Campo " << campo << " cifrado en el nodo con ID " << idNodo << ".\n";
+            return;
+        }
+        aux = aux->getSiguiente();
+    } while (aux != cabeza);
+
+    std::cout << "Nodo con ID " << idNodo << " no encontrado.\n";
+}
+
+// Cifrar un campo en todos los nodos
+template <typename T>
+void Lista_Circular_Doble<T>::cifrarCampoEnTodos(int idNodo, int desplazamiento) {
+    if (!cabeza) {
+        std::cout << "La lista está vacía.\n";
+        return;
+    }
+
+
+    Nodo<T>* aux = cabeza;
+    do {
+        if (aux->getIdEspacio() == idNodo) {
+            
+                std::string nombre= aux->getNombre();
+                aux->setNombre(cifrarString(nombre, desplazamiento));
+                std::string apellido = aux->getApellido();
+                aux->setApellido(cifrarString(apellido, desplazamiento));
+                std::string cedula=aux->getCedula();
+                aux->setCedula(cifrarString(cedula, desplazamiento));
+                std::string placa = aux->getPlaca();
+                aux->setPlaca(cifrarString(placa, desplazamiento));
+                std::string marca=aux->getMarca();
+                aux->setMarca(cifrarString(marca, desplazamiento));
+                std::string color=aux->getColor();
+                aux->setColor(cifrarString(color, desplazamiento));
+                std::string fecha=aux->getFechaHora();
+                aux->setFechaHora(cifrarString(fecha, desplazamiento));
+            }
+        aux = aux->getSiguiente();
+        }
+    while (aux != cabeza);
+    std::cout << "Cifrado correctamente";
 }

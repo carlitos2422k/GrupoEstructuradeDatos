@@ -22,9 +22,13 @@ public:
     static void modifyCharInString(std::string& str, char target, int offset);
     static bool validarPlacaEcuador(const std::string& placa);
     static void mostrarMenu(const std::string opciones[], int numOpciones, int seleccion);
-    static std::string getCurrentDateTime();
+    static void mostrarMenuManual(const std::string opciones[], int numOpciones, int seleccion);
+    static void mostrarMenuCifrar(const std::string opciones[], int numOpciones, int seleccion);
+    static void mostrarMenuCampoCifrar(const std::string opciones[], int numOpciones, int seleccion);
     static bool isUniqueField(Lista_Circular_Doble<std::string>* lista, const std::string& campo, const std::string& tipo, int id);
     static bool isSpaceOccupied(Lista_Circular_Doble<std::string>* lista, int idEspacio);
+    static std::string getCurrentDateTime();
+
 };
 
 #endif // UTILS_H

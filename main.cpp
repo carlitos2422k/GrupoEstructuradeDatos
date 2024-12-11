@@ -1,5 +1,4 @@
 #include "Lista_Circular_Doble.cpp" // Asegúrate de que esta clase maneje los nodos de parqueo
-#include "Lista_Circular_Doble.h"
 #include "Nodo.cpp"
 #include "Validaciones.cpp"
 #include "Parqueadero.cpp"
@@ -23,6 +22,7 @@ int main() {
         "Eliminar vehiculo",
         "Mostrar vehiculos",
         "Manual de usuario",
+        "Cifrar",
         "Salir"
     };
     string opciones_manual[] = {
@@ -31,17 +31,37 @@ int main() {
         "3. Mostrar Vehiculos",
         "4. Salir del Manual"
                 };
+    string opciones_cifrar[]={
+        "Cifrar todos los datos",
+        "Cifrar campo especifico",
+        "Regresar"
+    };
+    string opciones_cifrar_campo[]={
+        "Cifrar Nombre",
+        "Cifrar Apellido",
+        "Cifrar Cedula",
+        "Cifrar Placa",
+        "Cifrar Marca",
+        "Cifrar Color",
+        "Cifrar Fecha",
+        "Regresar"
+    };
     int seleccion = 0;
-    int numOpciones = 5;
+    int numOpciones = 6;
+    const int numOpcionesCifrar=3;
+    const int numOpcionesCifrarCampo=8;
     bool ejecutando = true;
     const int num_opciones_manual = 4;
     int opcion_manual = 0;
-
+    int opcion_cifrado = 0;
+    int opcion_campocifrado = 0;
     string nombre, apellido, placa, marca, color, cedulaStr, fechaHoraActual;
     long cedula;
     int idEspacio = 0;
+    int espacio;
 
     while (ejecutando) {
+        espacio=0;
         cedulaStr = "";
         placa = "";
         Utils::mostrarMenu(opciones, numOpciones, seleccion);
@@ -175,8 +195,122 @@ int main() {
                     }
                 }
                 break;
+            case 4: // Cifrar
+                while (true) {
+                    system("cls");
+                    cout << "\033[34m**** Cifrado ****\033[0m" << endl;
 
-            case 4: // Salir
+                    for (int i = 0; i < numOpcionesCifrar; ++i) {
+                        if (i == opcion_cifrado)
+                            cout << "-> " << opciones_cifrar[i] << endl;
+                        else
+                            cout << "   " << opciones_cifrar[i] << endl;
+                    }
+                    parqueadero->mostrarParqueadero();
+                    char tecla_manualcifrado = _getch();
+                    if (tecla_manualcifrado == 72)
+                        opcion_cifrado = (opcion_cifrado - 1 + numOpcionesCifrar) % numOpcionesCifrar;
+                    else if (tecla_manualcifrado == 80)
+                        opcion_cifrado = (opcion_cifrado + 1) % numOpcionesCifrar;
+                    else if (tecla_manualcifrado == 13) {
+                        switch (opcion_cifrado) {
+                        case 0:
+                                espacio = ingresar_entero.ingresar("Ingrese el espacio de parqueo a cifrar: ","entero");
+                                cout << endl;
+                                if (espacio < 0 || espacio >= filas * columnas) {
+                                    cout << "ID de espacio inválido. Ingrese nuevamente\n";
+                                    cout << endl;
+                                    system("pause");
+                                    break;
+                                }
+                                else if (Utils::isSpaceOccupied(lista_vehiculos,espacio)){
+                                    cout << "El espacio de parqueo esta vacio intente nuevamente";
+                                    cout << endl;
+                                    system("pause");
+                                    break;
+                                }
+                            
+                            lista_vehiculos->cifrarCampoEnTodos(espacio,5);
+                            system("pause");
+                            break;
+                        case 1:
+                                espacio = ingresar_entero.ingresar("Ingrese el espacio de parqueo a cifrar: ","entero");
+                                cout << endl;
+                                if (espacio < 0 || espacio >= filas * columnas) {
+                                    cout << "ID de espacio inválido. Ingrese nuevamente\n";
+                                    cout << endl;
+                                    system("pause");
+                                    break;
+                                }
+                                else if (Utils::isSpaceOccupied(lista_vehiculos,espacio)){
+                                    cout << "El espacio de parqueo esta vacio intente nuevamente";
+                                    cout << endl;
+                                    system("pause");
+                                    break;
+                                }
+                        while (true) {
+                        system("cls");
+                        cout << "\033[34m**** Cifrar campo ****\033[0m" << endl;
+
+                        for (int i = 0; i < numOpcionesCifrarCampo; ++i) {
+                            if (i == opcion_campocifrado)
+                                cout << "-> " << opciones_cifrar_campo[i] << endl;
+                            else
+                                cout << "   " << opciones_cifrar_campo[i] << endl;
+                        }
+                        parqueadero->mostrarParqueadero();
+                        char tecla_manual = _getch();
+                        if (tecla_manual == 72)
+                            opcion_campocifrado = (opcion_campocifrado - 1 + numOpcionesCifrarCampo) % numOpcionesCifrarCampo;
+                        else if (tecla_manual == 80)
+                            opcion_campocifrado = (opcion_campocifrado + 1) % numOpcionesCifrarCampo;
+                        else if (tecla_manual == 13) {
+                        switch (opcion_campocifrado) {
+                                    case 0:
+                                        lista_vehiculos->cifrarCampoDeNodo(espacio,"nombre",5);
+                                        system("pause");
+                                        break;
+                                    case 1:
+                                        lista_vehiculos->cifrarCampoDeNodo(espacio,"apellido",5);
+                                        system("pause");
+                                        break;
+                                    case 2:
+                                        lista_vehiculos->cifrarCampoDeNodo(espacio,"cedula",5);
+                                        system("pause");
+                                        break;
+                                    case 3:
+                                        lista_vehiculos->cifrarCampoDeNodo(espacio,"placa",5);
+                                        system("pause");
+                                        break;
+                                    case 4:
+                                        lista_vehiculos->cifrarCampoDeNodo(espacio,"marca",5);
+                                        system("pause");
+                                        break;
+                                    case 5:
+                                        lista_vehiculos->cifrarCampoDeNodo(espacio,"color",5);
+                                        system("pause");
+                                        break;
+                                    case 6:
+                                        lista_vehiculos->cifrarCampoDeNodo(espacio,"fecha",5);
+                                        system("pause");
+                                        break;
+                                    case 7:
+                                        break;
+                                    }
+                                    if (opcion_campocifrado == 7) break;
+                                }
+                            }
+                            break;
+                            system("pause");
+                            break;
+                        case 2:
+                            break;
+                        }
+                        if (opcion_cifrado == 2) break;
+                    }
+                }
+                break;
+            case 5: // Salir
                 ejecutando = false;
                 break;
             }

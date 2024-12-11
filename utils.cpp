@@ -8,6 +8,7 @@
  * NRC :                           1978                                                *
  **************************************************************************************/
 #include "utils.h"
+#include <iostream>
 #include <vector>
 #include <regex>
 #include <chrono>
@@ -98,14 +99,38 @@ void Utils::mostrarMenu(const std::string opciones[], int numOpciones, int selec
         }
     }
 }
-
-// Definición de la función getCurrentDateTime
-std::string Utils::getCurrentDateTime() {
-    auto now = std::chrono::system_clock::now();
-    auto now_time_t = std::chrono::system_clock::to_time_t(now);
-    std::string timeStr = std::ctime(&now_time_t);
-    timeStr.pop_back(); // Eliminar el salto de línea final de ctime
-    return timeStr;
+void Utils::mostrarMenuManual(const std::string opciones[], int numOpciones, int seleccion) {
+    system("cls");
+    std::cout << "\033[35m*********** Manual de usuario ***********\033[0m\n";
+    for (int i = 0; i < numOpciones; ++i) {
+        if (i == seleccion) {
+            std::cout << "\033[32m > " << opciones[i] << " <\033[0m\n"; // Resaltar la opción seleccionada
+        } else {
+            std::cout << "   " << opciones[i] << "\n";
+        }
+    }
+}
+void Utils::mostrarMenuCifrar(const std::string opciones[], int numOpciones, int seleccion) {
+    system("cls");
+    std::cout << "\033[35m*********** Cifrado ***********\033[0m\n";
+    for (int i = 0; i < numOpciones; ++i) {
+        if (i == seleccion) {
+            std::cout << "\033[32m > " << opciones[i] << " <\033[0m\n"; // Resaltar la opción seleccionada
+        } else {
+            std::cout << "   " << opciones[i] << "\n";
+        }
+    }
+}
+void Utils::mostrarMenuCampoCifrar(const std::string opciones[], int numOpciones, int seleccion) {
+    system("cls");
+    std::cout << "\033[35m*********** Cifrado por campo ***********\033[0m\n";
+    for (int i = 0; i < numOpciones; ++i) {
+        if (i == seleccion) {
+            std::cout << "\033[32m > " << opciones[i] << " <\033[0m\n"; // Resaltar la opción seleccionada
+        } else {
+            std::cout << "   " << opciones[i] << "\n";
+        }
+    }
 }
 
 // Validar unicidad de un campo en la lista
@@ -124,6 +149,7 @@ bool Utils::isUniqueField(Lista_Circular_Doble<std::string>* lista, const std::s
 
     return true;
 }
+
 bool Utils::isSpaceOccupied(Lista_Circular_Doble<std::string>* lista, int idEspacio) {
     Nodo<std::string>* actual = lista->getCabeza();
     if (!actual) return true; // Si la lista está vacía, el espacio no está ocupado.
@@ -143,3 +169,13 @@ bool Utils::isSpaceOccupied(Lista_Circular_Doble<std::string>* lista, int idEspa
 
     return true; // No se encontró el idEspacio en la lista.
 }
+
+// Definición de la función getCurrentDateTime
+std::string Utils::getCurrentDateTime() {
+    auto now = std::chrono::system_clock::now();
+    auto now_time_t = std::chrono::system_clock::to_time_t(now);
+    std::string timeStr = std::ctime(&now_time_t);
+    timeStr.pop_back(); // Eliminar el salto de línea final de ctime
+    return timeStr;
+}
+
