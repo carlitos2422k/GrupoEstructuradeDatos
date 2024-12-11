@@ -22,7 +22,7 @@ int main() {
     string opciones[] = {
         "Insertar vehiculo",
         "Eliminar vehiculo",
-        "Mostrar vehiculos",
+        "Mostrar vehiculos por hora",
         "Manual de usuario",
         "Cifrar",
         "Salir"
@@ -174,9 +174,9 @@ int main() {
 
                 case 1: // Buscar por rango de hora
                     system("cls");
-                    cout << "Ingrese la hora de inicio (HH:MM): ";
+                    cout << "Ingrese la hora de inicio (HH:MM:SS): ";
                     cin >> horaInicio;
-                    cout << "Ingrese la hora de fin (HH:MM): ";
+                    cout << "Ingrese la hora de fin (HH:MM:SS): ";
                     cin >> horaFin;
                     lista_vehiculos->BuscarPorRangoDeHora(horaInicio, horaFin);
                     system("pause");
