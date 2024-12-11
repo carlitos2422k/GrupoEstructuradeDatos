@@ -6,10 +6,12 @@
 #include <string>
 #include <conio.h>
 #include <cstdlib>
+#include <vector>
 #include "utils.cpp"
 using namespace std;
 
 int main() {
+
     int filas = 5, columnas = 5;
     Parqueadero* parqueadero = new Parqueadero(filas, columnas);
     Lista_Circular_Doble<string>* lista_vehiculos = new Lista_Circular_Doble<string>();
@@ -46,6 +48,11 @@ int main() {
         "Cifrar Fecha",
         "Regresar"
     };
+    string opciones_mostrar[] = {
+        "Mostrar todos los vehículos",
+        "Buscar vehículos por rango de hora",
+        "Regresar"
+        };
     int seleccion = 0;
     int numOpciones = 6;
     const int numOpcionesCifrar=3;
@@ -55,10 +62,13 @@ int main() {
     int opcion_manual = 0;
     int opcion_cifrado = 0;
     int opcion_campocifrado = 0;
+    int opcion_mostrar=0;
     string nombre, apellido, placa, marca, color, cedulaStr, fechaHoraActual;
     long cedula;
     int idEspacio = 0;
     int espacio;
+    std::string horaInicio="";
+    std::string horaFin="";
 
     while (ejecutando) {
         espacio=0;
@@ -137,12 +147,48 @@ int main() {
             parqueadero->liberarEspacio(idEspacio);
             system("pause");
                 break;
+    case 2: // Mostrar vehículos
+    while (true) {
+        system("cls");
+        cout << "\033[34m**** Mostrar Vehículos ****\033[0m" << endl;
+        // Mostrar opciones
+        for (int i = 0; i < 3; ++i) {
+            if (i == opcion_mostrar) {
+                cout << "-> " << opciones_mostrar[i] << endl;
+            } else {
+                cout << "   " << opciones_mostrar[i] << endl;
+            }
+        }
 
-            case 2: // Mostrar vehículos
-                lista_vehiculos->Mostrar();
-                system("pause");
+        char tecla_mostrar = _getch(); // Capturar entrada del usuario
+        if (tecla_mostrar == 72) { // Flecha hacia arriba
+            opcion_mostrar = (opcion_mostrar - 1 + 3) % 3;
+        } else if (tecla_mostrar == 80) { // Flecha hacia abajo
+            opcion_mostrar = (opcion_mostrar + 1) % 3;
+        } else if (tecla_mostrar == 13) { // Enter
+            switch (opcion_mostrar) {
+                case 0: // Mostrar todos los vehículos
+                    lista_vehiculos->Mostrar();
+                    system("pause");
+                    break;
+
+                case 1: // Buscar por rango de hora
+                    system("cls");
+                    cout << "Ingrese la hora de inicio (HH:MM): ";
+                    cin >> horaInicio;
+                    cout << "Ingrese la hora de fin (HH:MM): ";
+                    cin >> horaFin;
+                    lista_vehiculos->BuscarPorRangoDeHora(horaInicio, horaFin);
+                    system("pause");
+                    break;
+
+                case 2: // Regresar
                 break;
-
+            }
+            if (opcion_mostrar == 2) break;
+        }
+    }
+    break;
             case 3: // Manual de usuario
                 while (true) {
                     system("cls");

@@ -1,5 +1,6 @@
 #include "Lista_Circular_Doble.h"
 #include <algorithm>
+#include <sstream>
 template<typename T>
 Lista_Circular_Doble<T>::Lista_Circular_Doble() : cabeza(nullptr) {}
 
@@ -227,4 +228,57 @@ void Lista_Circular_Doble<T>::cifrarCampoEnTodos(int idNodo, int desplazamiento)
         }
     while (aux != cabeza);
     std::cout << "Cifrado correctamente";
+
+}
+int convertirHoraAEntero(const std::string& hora) {
+    std::istringstream stream(hora);
+    int horas, minutos, segundos = 0; // Inicializar segundos como 0 para compatibilidad
+    char delimitador;
+    stream >> horas >> delimitador >> minutos;
+
+    // Intentar leer los segundos, si están presentes
+    if (hora.size() > 5) { // Formato incluye segundos (HH:MM:SS)
+        stream >> delimitador >> segundos;
+    }
+
+    // Convertir a un valor total en segundos
+    return horas * 3600 + minutos * 60 + segundos;
+}
+
+template <typename T>
+void Lista_Circular_Doble<T>::BuscarPorRangoDeHora(const std::string& horaInicio, const std::string& horaFin) {
+    if (!cabeza) {
+        std::cout << "La lista está vacía.\n";
+        return;
+    }
+
+    // Convertir las horas a segundos totales
+    int inicio = convertirHoraAEntero(horaInicio);
+    int fin = convertirHoraAEntero(horaFin);
+
+    // Lambda para verificar si una hora está en el rango
+    auto estaEnRango = [inicio, fin](const std::string& fechaHora) -> bool {
+        if (fechaHora.size() < 16) return false; // Validar que el formato sea suficiente
+        std::string hora = fechaHora.substr(11, 8); // Extrae la hora HH:MM:SS
+        int horaEntero = convertirHoraAEntero(hora);
+        return horaEntero >= inicio && horaEntero <= fin;
+    };
+
+    Nodo<T>* actual = cabeza;
+    bool encontrado = false;
+    do {
+        if (estaEnRango(actual->fechaHora)) {
+            encontrado = true;
+            std::cout << "Vehículo encontrado: "
+                      << "Nombre: " << actual->nombre
+                      << ", Apellido: " << actual->apellido
+                      << ", Placa: " << actual->placa
+                      << ", Hora de entrada: " << actual->fechaHora.substr(11, 8) << "\n"; // Mostrar HH:MM:SS
+        }
+        actual = actual->siguiente;
+    } while (actual != cabeza);
+
+    if (!encontrado) {
+        std::cout << "No se encontraron vehículos en el rango de horas especificado.\n";
+    }
 }

@@ -28,6 +28,10 @@ public:
     static bool isUniqueField(Lista_Circular_Doble<std::string>* lista, const std::string& campo, const std::string& tipo, int id);
     static bool isSpaceOccupied(Lista_Circular_Doble<std::string>* lista, int idEspacio);
     static std::string getCurrentDateTime();
+    template <typename T>
+    static std::vector<Nodo<T>*> FiltrarAutosPorHora(const Lista_Circular_Doble<T>& lista, const std::string& horaInicio, const std::string& horaFin);
+    
+    static bool EsFechaDeHoy(const std::string& fechaHora);
 
 };
 

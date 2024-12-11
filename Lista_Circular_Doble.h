@@ -22,6 +22,7 @@ public:
     void cifrarCampoEnTodos(int idNodo, int desplazamiento);
     std::string cifrarString(const std::string& texto, int desplazamiento);
     Nodo<T>* getCabeza(); 
+    void BuscarPorRangoDeHora(const std::string& horaInicio, const std::string& horaFin);
     friend class Utils;
 };
 
