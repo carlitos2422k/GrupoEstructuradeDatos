@@ -45,12 +45,12 @@ void Lista_Circular_Doble<T>::Mostrar() {
 
     Nodo<T>* aux = cabeza;
     do {
-        std::cout << "Nombre: " << aux->getNombre()
-                  << ", Apellido: " << aux->getApellido()
-                  << ", ID Espacio: " << aux->getIdEspacio()
-                  << ", Placa: " << aux->getPlaca()
-                  << ", Marca: " << aux->getMarca()
-                  << ", Hora de parqueo: " << aux->getFechaHora() << std::endl;
+        std::cout << "\033[31mNombre: \033[0m" << aux->getNombre()
+                  << "\033[31m, Apellido: \033[0m" << aux->getApellido()
+                  << "\033[31m, ID Espacio: \033[0m" << aux->getIdEspacio()
+                  << "\033[31m, Placa: \033[0m" << aux->getPlaca()
+                  << "\033[31m, Marca: \033[0m" << aux->getMarca()
+                  << "\033[31m, Hora de parqueo: \033[0m" << aux->getFechaHora() << std::endl;
         aux = aux->getSiguiente();
     } while (aux != cabeza);
 }

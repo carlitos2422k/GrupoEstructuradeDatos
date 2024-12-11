@@ -135,7 +135,6 @@ int main() {
             cin >> placa;
             lista_vehiculos->EliminarPorPlaca(placa);
             parqueadero->liberarEspacio(idEspacio);
-            cout << "Vehículo eliminado y espacio liberado.\n";
             system("pause");
                 break;
 
