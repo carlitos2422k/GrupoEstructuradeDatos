@@ -1,3 +1,12 @@
+/***************************************************************************************
+ *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                                  *
+ * Proposito:                      Programa sobre Sistema de Gestión de Parqueo        *
+ * Autor:                          Danna Andrade, Carlos Perez, Samaniego Jefferson    *
+ * Fecha de creacion:              02/12/2024                                          *
+ * Fecha de modificacion:          11/12/2024                                          *
+ * Materia:                        Estructura de datos                                 *
+ * NRC :                           1978                                                *
+ **************************************************************************************/
 #include "Parqueadero.h"
 
 Parqueadero::Parqueadero(int _filas, int _columnas) : filas(_filas), columnas(_columnas) {

@@ -1,9 +1,9 @@
 /***************************************************************************************
  *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                                  *
- * Proposito:                      Programa sobre lista circular cifrado               *
- * Autor:                          Carlos Perez                                        *
- * Fecha de creacion:              04/12/2024                                          *
- * Fecha de modificacion:          04/12/2024                                          *
+ * Proposito:                      Programa sobre Sistema de Gestión de Parqueo        *
+ * Autor:                          Danna Andrade, Carlos Perez, Samaniego Jefferson    *
+ * Fecha de creacion:              02/12/2024                                          *
+ * Fecha de modificacion:          11/12/2024                                          *
  * Materia:                        Estructura de datos                                 *
  * NRC :                           1978                                                *
  **************************************************************************************/

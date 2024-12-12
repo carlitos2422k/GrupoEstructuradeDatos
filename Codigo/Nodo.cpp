@@ -1,5 +1,5 @@
-#include "Nodo.h"
 
+#include "Nodo.h"
 template<typename T>
 Nodo<T>::Nodo(T _nombre, T _apellido, T _cedula, int _idEspacio, T _placa, T _marca, T _color, std::string _fechaHora) {
     nombre = _nombre;
@@ -114,3 +114,5 @@ template<typename T>
 Nodo<T>* Nodo<T>::getAnterior() {
     return anterior;
 }
+
+

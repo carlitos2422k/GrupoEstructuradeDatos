@@ -1,4 +1,6 @@
-#pragma once
+#ifndef NODO_H
+#define NODO_H
+
 #include <string>
 
 template<typename T>
@@ -45,3 +47,5 @@ public:
 
     template<typename U> friend class Lista_Circular_Doble;
 };
+
+#endif
