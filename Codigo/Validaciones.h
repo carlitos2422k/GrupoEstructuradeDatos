@@ -1,9 +1,9 @@
 /***************************************************************************************
  *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                                  *
- * Proposito:                      Programa sobre lista simple                         *
- * Autor:                          Josue Chango, Adonny Calero, Eduardo altamirano     *
- * Fecha de creacion:              18/11/2024                                          *
- * Fecha de modificacion:          18/11/2024                                          *
+ * Proposito:                      Programa sobre Sistema de Gestión de Parqueo        *
+ * Autor:                          Danna Andrade, Carlos Perez, Samaniego Jefferson    *
+ * Fecha de creacion:              02/12/2024                                          *
+ * Fecha de modificacion:          11/12/2024                                          *
  * Materia:                        Estructura de datos                                 *
  * NRC :                           1978                                                *
  **************************************************************************************/

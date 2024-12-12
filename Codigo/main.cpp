@@ -1,4 +1,13 @@
-#include "Lista_Circular_Doble.cpp" // Asegúrate de que esta clase maneje los nodos de parqueo
+/***************************************************************************************
+ *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                                  *
+ * Proposito:                      Programa sobre Sistema de Gestión de Parqueo        *
+ * Autor:                          Danna Andrade, Carlos Perez, Samaniego Jefferson    *
+ * Fecha de creacion:              02/12/2024                                          *
+ * Fecha de modificacion:          11/12/2024                                          *
+ * Materia:                        Estructura de datos                                 *
+ * NRC :                           1978                                                *
+ **************************************************************************************/
+#include "Lista_Circular_Doble.cpp" 
 #include "Nodo.cpp"
 #include "Validaciones.cpp"
 #include "Parqueadero.cpp"
@@ -20,12 +29,12 @@ int main() {
     Validaciones<long> ingresar_cedula;
     Validaciones<int> ingresar_entero;
     string opciones[] = {
-        "Insertar vehiculo",
-        "Eliminar vehiculo",
-        "Mostrar vehiculos por hora",
-        "Manual de usuario",
-        "Cifrar",
-        "Salir"
+        "1. Insertar vehiculo",
+        "2. Eliminar vehiculo",
+        "3. Mostrar vehiculos por hora",
+        "4. Manual de usuario",
+        "5. Cifrar",
+        "6. Salir"
     };
     string opciones_manual[] = {
         "1. Insertar Vehiculo",
@@ -34,24 +43,24 @@ int main() {
         "4. Salir del Manual"
                 };
     string opciones_cifrar[]={
-        "Cifrar todos los datos",
-        "Cifrar campo especifico",
-        "Regresar"
+        "1. Cifrar todos los datos",
+        "2. Cifrar campo especifico",
+        "3. Regresar"
     };
     string opciones_cifrar_campo[]={
-        "Cifrar Nombre",
-        "Cifrar Apellido",
-        "Cifrar Cedula",
-        "Cifrar Placa",
-        "Cifrar Marca",
-        "Cifrar Color",
-        "Cifrar Fecha",
-        "Regresar"
+        "1. Cifrar Nombre",
+        "2. Cifrar Apellido",
+        "3. Cifrar Cedula",
+        "4. Cifrar Placa",
+        "5. Cifrar Marca",
+        "6. Cifrar Color",
+        "7. Cifrar Fecha",
+        "8. Regresar"
     };
     string opciones_mostrar[] = {
-        "Mostrar todos los vehículos",
-        "Buscar vehículos por rango de hora",
-        "Regresar"
+        "1. Mostrar todos los vehiculos",
+        "2. Buscar vehiculos por rango de hora",
+        "3. Regresar"
         };
     int seleccion = 0;
     int numOpciones = 6;
@@ -91,51 +100,51 @@ int main() {
                     idEspacio = ingresar_entero.ingresar("Ingrese en donde desea parquear (0-14): ", "entero");
                     cout << endl;
                     if (idEspacio < 0 || idEspacio >= filas * columnas) {
-                        cout << "ID de espacio inválido. Ingrese nuevamente\n";
+                        cout << "ID de espacio invalido. Ingrese nuevamente\n";
                     } else if (!Utils::isSpaceOccupied(lista_vehiculos, idEspacio)) {
                         cout << "ID de espacio ocupado. Ingrese nuevamente\n";
                     }
                 } while (idEspacio < 0 || idEspacio >= filas * columnas || !Utils::isSpaceOccupied(lista_vehiculos, idEspacio));
 
-                cout << "Datos del vehículo:\n";
+                cout << "Datos del vehiculo:\n";
                 nombre = ingresar_string.ingresar("Ingrese el nombre del propietario: ", "string");
                 cout << endl;
                 apellido = ingresar_string.ingresar("Ingrese el apellido del propietario: ", "string");
                 cout << endl;
                 while (!Utils::validateId(cedulaStr) || !Utils::isUniqueField(lista_vehiculos, cedulaStr, "cedula", -1)) {
-                    cedula = ingresar_cedula.ingresar("Ingrese la cédula: ", "long");
+                    cedula = ingresar_cedula.ingresar("Ingrese la cedula: ", "long");
                     cout << endl;
                     cedulaStr = std::to_string(cedula);
 
                     if (!Utils::validateId(cedulaStr)) {
-                        cout << "Cédula inválida. Ingrese nuevamente." << endl;
+                        cout << "Cedula invalida. Ingrese nuevamente." << endl;
                     }
                     if (!Utils::isUniqueField(lista_vehiculos, cedulaStr, "cedula", -1)) {
-                        cout << "Cédula ya ingresada. Ingrese nuevamente." << endl;
+                        cout << "Cedula ya ingresada. Ingrese nuevamente." << endl;
                     }
                 }
                 cout << endl;
                 while (!Utils::validarPlacaEcuador(placa) || !Utils::isUniqueField(lista_vehiculos, placa, "placa", -1)) {
-                    cout << "Ingrese la placa del vehículo: ";
+                    cout << "Ingrese la placa del vehiculo: ";
                     cout << endl;
                     cin >> placa;
                     if (!Utils::validarPlacaEcuador(placa)) {
-                        cout << "Placa inválida. Ingrese nuevamente." << endl;
+                        cout << "Placa invalida. Ingrese nuevamente." << endl;
                     }
                     if (!Utils::isUniqueField(lista_vehiculos, placa, "placa", -1)) {
                         cout << "Placa ya ingresada. Ingrese nuevamente." << endl;
                     }
                 }
                 cout << endl;
-                marca = ingresar_string.ingresar("Ingrese la marca del vehículo: ", "string");
+                marca = ingresar_string.ingresar("Ingrese la marca del vehiculo: ", "string");
                 cout << endl;
-                color = ingresar_string.ingresar("Ingrese el color del vehículo: ", "string");
+                color = ingresar_string.ingresar("Ingrese el color del vehiculo: ", "string");
                 cout << endl;
                 fechaHoraActual = Utils::getCurrentDateTime();
                 cout << endl;
                 lista_vehiculos->ActualizarEspacio(nombre, apellido, cedulaStr, idEspacio, placa, marca, color, fechaHoraActual);
                 parqueadero->ocuparEspacio(idEspacio);
-                cout << "Vehículo ingresado correctamente en el espacio " << idEspacio << endl;
+                cout << "Vehiculo ingresado correctamente en el espacio " << idEspacio << endl;
                 system("pause");
                 break;
 
@@ -150,7 +159,7 @@ int main() {
     case 2: // Mostrar vehículos
     while (true) {
         system("cls");
-        cout << "\033[34m**** Mostrar Vehículos ****\033[0m" << endl;
+        cout << "\033[34m**** Mostrar Vehiculos ****\033[0m" << endl;
         // Mostrar opciones
         for (int i = 0; i < 3; ++i) {
             if (i == opcion_mostrar) {
@@ -263,7 +272,7 @@ int main() {
                                 espacio = ingresar_entero.ingresar("Ingrese el espacio de parqueo a cifrar: ","entero");
                                 cout << endl;
                                 if (espacio < 0 || espacio >= filas * columnas) {
-                                    cout << "ID de espacio inválido. Ingrese nuevamente\n";
+                                    cout << "ID de espacio invalido. Ingrese nuevamente\n";
                                     cout << endl;
                                     system("pause");
                                     break;
@@ -282,7 +291,7 @@ int main() {
                                 espacio = ingresar_entero.ingresar("Ingrese el espacio de parqueo a cifrar: ","entero");
                                 cout << endl;
                                 if (espacio < 0 || espacio >= filas * columnas) {
-                                    cout << "ID de espacio inválido. Ingrese nuevamente\n";
+                                    cout << "ID de espacio invalido. Ingrese nuevamente\n";
                                     cout << endl;
                                     system("pause");
                                     break;
