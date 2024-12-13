@@ -1,0 +1,5 @@
+C:/Users/Carlos/Desktop/GrupoEstructuradeDatos/Codigo/build/CMakeFiles/main.dir
+C:/Users/Carlos/Desktop/GrupoEstructuradeDatos/Codigo/build/CMakeFiles/ProgramaTest.dir
+C:/Users/Carlos/Desktop/GrupoEstructuradeDatos/Codigo/build/CMakeFiles/test.dir
+C:/Users/Carlos/Desktop/GrupoEstructuradeDatos/Codigo/build/CMakeFiles/edit_cache.dir
+C:/Users/Carlos/Desktop/GrupoEstructuradeDatos/Codigo/build/CMakeFiles/rebuild_cache.dir
